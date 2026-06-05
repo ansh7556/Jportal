@@ -15,8 +15,11 @@
     background: rgba(0,0,0,0.55); z-index: 9; opacity: 0;
     transition: opacity 0.2s; pointer-events: none;
   }
+  .sidebar-overlay.open { opacity: 1; pointer-events: all; }
 
-  /* LOGIN PAGE */
+  /* ══════════════════
+     LOGIN PAGE
+  ══════════════════ */
   #login-page {
     position: fixed; inset: 0; background: #0a0a0a; z-index: 1000;
     display: flex; flex-direction: column;
@@ -32,7 +35,7 @@
   }
   .login-body {
     flex: 1; display: flex; align-items: center; justify-content: center;
-    gap: 0; padding: 40px 20px;
+    padding: 40px 20px;
   }
   .login-card {
     display: flex; max-width: 860px; width: 100%;
@@ -97,41 +100,75 @@
   .login-error { font-size: 12px; color: #f87171; margin-top: 8px; min-height: 16px; }
   #login-page.hidden { display: none; }
 
-  /* SIDEBAR */
-  .sidebar { width: 210px; background: #1a1a1a; border-right: 1px solid #2a2a2a; display: flex; flex-direction: column; padding: 0; min-height: 100vh; position: fixed; left: 0; top: 0; z-index: 10; transition: transform 0.25s cubic-bezier(.4,0,.2,1); }
+  /* ══════════════════
+     SIDEBAR
+  ══════════════════ */
+  .sidebar {
+    width: 210px; background: #1a1a1a; border-right: 1px solid #2a2a2a;
+    display: flex; flex-direction: column; padding: 0; min-height: 100vh;
+    position: fixed; left: 0; top: 0; z-index: 10;
+    transition: transform 0.25s cubic-bezier(.4,0,.2,1);
+  }
   .sidebar-logo { display: flex; align-items: center; gap: 10px; padding: 18px 16px; border-bottom: 1px solid #2a2a2a; }
   .logo-icon { width: 32px; height: 32px; background: #2e7d32; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
   .logo-text { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #fff; }
   .sidebar-nav { padding: 12px 0; flex: 1; overflow-y: auto; }
-  .nav-item { display: flex; align-items: center; gap: 12px; padding: 11px 20px; font-size: 13px; color: #999; cursor: pointer; transition: all 0.15s; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px; padding: 11px 20px;
+    font-size: 13px; color: #999; cursor: pointer; transition: all 0.15s;
+    border-left: 2px solid transparent;
+  }
   .nav-item:hover { color: #fff; background: #222; }
-  .nav-item.active { background: #252525; color: #fff; border-left: 2px solid #fff; }
+  .nav-item.active { background: #252525; color: #fff; border-left-color: #fff; }
   .nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .sidebar-footer { padding: 14px 16px; border-top: 1px solid #2a2a2a; display: flex; align-items: center; gap: 10px; }
+  .sidebar-avatar {
+    width: 30px; height: 30px; border-radius: 50%; background: #2e7d32;
+    display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .sidebar-username { font-size: 12px; color: #888; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* Hamburger button – only shown on mobile */
+  /* Hamburger */
   .hamburger { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; background: #1e1e1e; border: 1px solid #333; border-radius: 8px; cursor: pointer; color: #aaa; flex-shrink: 0; }
   .hamburger svg { width: 18px; height: 18px; }
 
-  /* MAIN */
-  .main { margin-left: 210px; flex: 1; padding: 0 0 60px; }
-  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; border-bottom: 1px solid #222; position: sticky; top: 0; background: #111; z-index: 5; }
+  /* ══════════════════
+     MAIN
+  ══════════════════ */
+  .main { margin-left: 210px; flex: 1; padding: 0 0 60px; min-width: 0; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 32px; border-bottom: 1px solid #222;
+    position: sticky; top: 0; background: #111; z-index: 5;
+  }
   .topbar-left { display: flex; align-items: center; gap: 10px; }
   .topbar-title { font-size: 17px; font-weight: 600; letter-spacing: 0.5px; }
+  .topbar-semester { font-size: 11px; color: #555; background: #1c1c1c; border: 1px solid #2a2a2a; padding: 3px 10px; border-radius: 6px; }
   .topbar-actions { display: flex; align-items: center; gap: 16px; }
   .topbar-actions svg { width: 20px; height: 20px; color: #888; cursor: pointer; }
 
-  /* TABS */
+  /* ══════════════════
+     SECTION VIEWS
+  ══════════════════ */
+  .section-view { display: none; }
+  .section-view.active { display: block; }
+
+  /* ══════════════════
+     TABS
+  ══════════════════ */
   .tabs { display: flex; gap: 4px; justify-content: center; padding: 18px 32px 0; }
   .tab { display: flex; align-items: center; gap: 7px; padding: 8px 22px; border-radius: 8px; font-size: 13px; cursor: pointer; color: #888; border: 1px solid transparent; transition: all 0.15s; }
   .tab.active { background: #222; color: #fff; border-color: #333; }
   .tab:hover { background: #1e1e1e; color: #ccc; }
   .tab svg { width: 15px; height: 15px; }
 
-  /* VIEWS */
+  /* ══════════════════
+     SUB-VIEWS
+  ══════════════════ */
   .view { display: none; }
   .view.active { display: block; }
 
-  /* ── OVERVIEW ── */
+  /* ── GRADES OVERVIEW ── */
   .overview-wrap { padding: 20px 32px; }
   .chart-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 24px 24px 16px; margin-bottom: 20px; }
   .chart-title { font-size: 15px; font-weight: 600; text-align: center; margin-bottom: 6px; color: #ddd; }
@@ -155,9 +192,15 @@
   .action-btn svg { width: 20px; height: 20px; }
 
   /* ── MARKS ── */
-  .controls { padding: 16px 32px; display: flex; align-items: center; gap: 10px; }
-  .semester-select { background: #1c1c1c; border: 1px solid #333; color: #ddd; padding: 9px 36px 9px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 32px; }
+  .controls { padding: 16px 32px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .semester-select {
+    background: #1c1c1c; border: 1px solid #333; color: #ddd;
+    padding: 9px 36px 9px 14px; border-radius: 8px; font-size: 13px; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23888' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; outline: none;
+  }
+  .marks-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 32px; }
   .card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 20px; }
   .card-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
   .card-title { font-size: 13px; font-weight: 700; letter-spacing: 0.8px; color: #ddd; }
@@ -183,7 +226,6 @@
   .filter-btn { display: flex; align-items: center; gap: 6px; background: #1c1c1c; border: 1px solid #333; color: #aaa; padding: 8px 14px; border-radius: 8px; font-size: 13px; cursor: pointer; transition: all 0.15s; }
   .filter-btn:hover { color: #fff; background: #252525; }
   .filter-btn svg { width: 14px; height: 14px; }
-
   .sem-grid { display: grid; grid-template-columns: 1fr; gap: 10px; padding: 0 32px; }
   .sem-subject-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; transition: border-color 0.15s; }
   .sem-subject-card:hover { border-color: #3a3a3a; }
@@ -195,6 +237,7 @@
   .sem-grade-val { font-size: 22px; font-weight: 700; line-height: 1; }
   .sem-grade-val.grade-O  { color: #4ade80; }
   .sem-grade-val.grade-A  { color: #4ade80; }
+  .sem-grade-val.grade-Ap { color: #4ade80; }
   .sem-grade-val.grade-B  { color: #60a5fa; }
   .sem-grade-val.grade-Bp { color: #60a5fa; }
   .sem-grade-val.grade-Cp { color: #f0a500; }
@@ -204,73 +247,242 @@
   .sem-credit-val { font-size: 22px; font-weight: 700; line-height: 1; color: #60a5fa; }
   .sem-label { font-size: 10px; color: #555; letter-spacing: 0.5px; margin-top: 4px; }
 
-  /* EDIT HINT */
+  /* ── ATTENDANCE ── */
+  .att-wrap { padding: 20px 32px; }
+  .att-notice { background: #1a1400; border: 1px solid #3a2e00; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #f0a500; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 8px; }
+  .att-notice svg { width: 14px; height: 14px; flex-shrink: 0; margin-top: 1px; }
+  .att-notice-text { color: #888; }
+  .att-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px; }
+  .att-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 18px 20px; transition: border-color 0.15s; }
+  .att-card:hover { border-color: #3a3a3a; }
+  .att-card-name { font-size: 13px; font-weight: 700; color: #ddd; margin-bottom: 10px; letter-spacing: 0.3px; }
+  .att-stats-row { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+  .att-stat { display: flex; justify-content: space-between; align-items: center; }
+  .att-stat-label { font-size: 11px; color: #666; }
+  .att-stat-val { font-size: 11px; color: #999; }
+  .att-bottom { display: flex; align-items: center; justify-content: space-between; }
+  .att-classes-info { font-size: 11px; color: #555; }
+  .att-classes-info b { color: #777; }
+  .att-hint { font-size: 10px; margin-top: 3px; }
+  .att-hint.green { color: #4ade80; }
+  .att-hint.yellow { color: #f0a500; }
+  .att-hint.red { color: #f87171; }
+  /* Circular progress */
+  .att-circle { position: relative; width: 52px; height: 52px; flex-shrink: 0; }
+  .att-circle svg { transform: rotate(-90deg); }
+  .att-circle-track { fill: none; stroke: #2a2a2a; stroke-width: 4; }
+  .att-circle-fill { fill: none; stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 0.5s ease; }
+  .att-circle-fill.green { stroke: #4ade80; }
+  .att-circle-fill.yellow { stroke: #f0a500; }
+  .att-circle-fill.red { stroke: #f87171; }
+  .att-circle-label { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+  .att-circle-label.green { color: #4ade80; }
+  .att-circle-label.yellow { color: #f0a500; }
+  .att-circle-label.red { color: #f87171; }
+
+  /* Day-to-Day */
+  .att-dtd-layout { display: grid; grid-template-columns: 280px 1fr; gap: 16px; }
+  .cal-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px; }
+  .cal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .cal-month-label { font-size: 13px; font-weight: 600; color: #ddd; }
+  .cal-nav-btns { display: flex; gap: 4px; }
+  .cal-nav-btn { background: #252525; border: 1px solid #333; border-radius: 5px; color: #aaa; font-size: 13px; padding: 3px 8px; cursor: pointer; transition: all 0.15s; }
+  .cal-nav-btn:hover { background: #2e2e2e; color: #fff; }
+  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+  .cal-day-hdr { text-align: center; font-size: 10px; color: #555; padding: 4px 0; letter-spacing: 0.5px; }
+  .cal-day { text-align: center; font-size: 12px; padding: 6px 2px; border-radius: 5px; cursor: pointer; color: #666; transition: all 0.1s; }
+  .cal-day:hover { background: #252525; color: #ccc; }
+  .cal-day.today { background: #f0a500; color: #000; font-weight: 700; border-radius: 50%; }
+  .cal-day.other { color: #333; }
+  .cal-day.selected { background: #252525; color: #fff; outline: 1px solid #3a3a3a; }
+  .day-view-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 240px; }
+  .day-view-date { font-size: 14px; font-weight: 600; color: #ddd; margin-bottom: 4px; }
+  .day-view-badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 10px; background: #2a2000; color: #f0a500; border: 1px solid #3a3000; margin-bottom: 24px; letter-spacing: 0.5px; }
+  .no-classes { text-align: center; }
+  .no-classes-icon { font-size: 32px; margin-bottom: 10px; opacity: 0.3; }
+  .no-classes h3 { font-size: 14px; font-weight: 600; color: #ddd; margin-bottom: 6px; }
+  .no-classes p { font-size: 12px; color: #555; }
+
+  /* ── GPA CALCULATOR ── */
+  .gpa-wrap { padding: 20px 32px; max-width: 680px; }
+  .gpa-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 24px; }
+  .gpa-result-box { background: #141414; border: 1px solid #2a2a2a; border-radius: 8px; padding: 24px; text-align: center; margin-bottom: 24px; }
+  .gpa-result-num { font-size: 52px; font-weight: 700; color: #4ade80; line-height: 1; }
+  .gpa-result-label { font-size: 12px; color: #555; margin-top: 6px; letter-spacing: 0.5px; }
+  .gpa-table-header { display: grid; grid-template-columns: 1fr 90px 100px 36px; gap: 8px; padding: 0 4px 8px; font-size: 10px; color: #555; letter-spacing: 0.8px; text-transform: uppercase; border-bottom: 1px solid #222; margin-bottom: 10px; }
+  .gpa-row { display: grid; grid-template-columns: 1fr 90px 100px 36px; gap: 8px; margin-bottom: 8px; align-items: center; }
+  .gpa-input { background: #141414; border: 1px solid #2e2e2e; color: #ddd; padding: 8px 12px; border-radius: 6px; font-size: 12px; width: 100%; outline: none; transition: border-color 0.15s; font-family: 'Segoe UI', sans-serif; }
+  .gpa-input:focus { border-color: #4ade80; }
+  .gpa-input::placeholder { color: #444; }
+  .gpa-del-btn { background: none; border: 1px solid #333; border-radius: 6px; color: #555; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.15s; font-size: 16px; }
+  .gpa-del-btn:hover { border-color: #f87171; color: #f87171; background: #200; }
+  .gpa-actions { display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap; }
+  .gpa-add-btn { display: flex; align-items: center; gap: 6px; background: #1e4620; border: 1px solid #2e7d32; color: #4ade80; padding: 9px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: 'Segoe UI', sans-serif; }
+  .gpa-add-btn:hover { background: #2e7d32; }
+  .gpa-calc-btn { background: #fff; color: #111; border: none; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; font-family: 'Segoe UI', sans-serif; }
+  .gpa-calc-btn:hover { background: #e8e8e8; }
+  .gpa-clear-btn { background: #1c1c1c; border: 1px solid #333; color: #888; padding: 9px 16px; border-radius: 8px; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: 'Segoe UI', sans-serif; }
+  .gpa-clear-btn:hover { color: #ccc; background: #252525; }
+
+  /* ── EXAMS ── */
+  .exams-wrap { padding: 20px 32px; }
+  .exams-layout { display: grid; grid-template-columns: 220px 1fr; gap: 16px; }
+  .exams-sidebar { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+  .exams-select-label { font-size: 10px; color: #555; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 6px; }
+  .exams-select-item { background: #141414; border: 1px solid #2e2e2e; border-radius: 7px; padding: 10px 12px; font-size: 12px; color: #ddd; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: space-between; }
+  .exams-select-item:hover { border-color: #3a3a3a; }
+  .exams-select-item.active { border-color: #f0a500; color: #f0a500; }
+  .exams-main { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 280px; gap: 12px; padding: 30px; }
+  .exams-main svg { width: 40px; height: 40px; color: #333; }
+  .exams-main h3 { font-size: 15px; font-weight: 600; color: #ddd; }
+  .exams-main p { font-size: 12px; color: #555; text-align: center; max-width: 300px; line-height: 1.6; }
+
+  /* ── SUBJECTS ── */
+  .subjects-wrap { padding: 20px 32px; }
+  .subj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .subj-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px 18px; transition: border-color 0.15s; }
+  .subj-card:hover { border-color: #3a3a3a; }
+  .subj-card-name { font-size: 12px; font-weight: 700; color: #ddd; letter-spacing: 0.4px; margin-bottom: 6px; line-height: 1.4; }
+  .subj-card-code { font-size: 10px; color: #555; margin-bottom: 8px; font-family: monospace; }
+  .subj-faculty-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+  .subj-tag { padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 600; }
+  .tag-lec { background: #0d1e35; color: #60a5fa; border: 1px solid #1a3050; }
+  .tag-tut { background: #2a1f00; color: #f0a500; border: 1px solid #3a2c00; }
+  .tag-prac { background: #0f2d12; color: #4ade80; border: 1px solid #1a3d1e; }
+  .subj-faculty-name { font-size: 11px; color: #777; }
+  .subj-card-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+  .subj-credits-pill { background: #252525; border: 1px solid #333; border-radius: 5px; padding: 3px 10px; font-size: 11px; color: #aaa; }
+  /* Choices */
+  .choices-section { margin-bottom: 24px; }
+  .choices-section-title { font-size: 12px; font-weight: 700; color: #888; letter-spacing: 0.8px; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .choices-count-badge { background: #222; border: 1px solid #333; border-radius: 20px; padding: 1px 8px; font-size: 10px; color: #666; font-weight: 400; }
+  .choices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .choice-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 14px 16px; position: relative; transition: border-color 0.15s; }
+  .choice-card.active-choice { border-color: #2e7d32; }
+  .choice-card.pending-choice { border-color: #3a2c00; }
+  .choice-num { position: absolute; top: 10px; right: 12px; font-size: 11px; color: #444; }
+  .choice-status { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: 20px; font-size: 10px; font-weight: 600; margin-bottom: 8px; }
+  .status-active { background: #0f2d12; color: #4ade80; border: 1px solid #1a3d1e; }
+  .status-pending { background: #2a1f00; color: #f0a500; border: 1px solid #3a2c00; }
+  .status-none { background: #1e1e1e; color: #555; border: 1px solid #2a2a2a; }
+  .choice-name { font-size: 12px; font-weight: 600; color: #ddd; line-height: 1.4; margin-bottom: 4px; }
+  .choice-meta { font-size: 10px; color: #555; }
+
+  /* ── FEE ── */
+  .fee-wrap { padding: 20px 32px; max-width: 640px; }
+  .fee-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 24px; }
+  .fee-card-title { font-size: 15px; font-weight: 600; color: #ddd; margin-bottom: 20px; }
+  .fee-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #222; }
+  .fee-row:last-child { border-bottom: none; }
+  .fee-label { font-size: 13px; color: #999; }
+  .fee-amount { font-size: 13px; font-weight: 600; }
+  .fee-paid { color: #4ade80; }
+  .fee-pending-clr { color: #f87171; }
+  .fee-total-row { padding-top: 16px; margin-top: 8px; border-top: 1px solid #333 !important; }
+  .fee-total-label { font-size: 14px; font-weight: 600; color: #ddd; }
+  .fee-total-amount { font-size: 16px; font-weight: 700; color: #fff; }
+  .fee-status-box { margin-top: 16px; background: #0f2d12; border: 1px solid #1a3d1e; border-radius: 8px; padding: 12px 16px; font-size: 12px; color: #4ade80; }
+
+  /* ── ACADEMIC CALENDAR ── */
+  .acal-wrap { padding: 20px 32px; max-width: 700px; }
+  .acal-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; overflow: hidden; }
+  .acal-header { padding: 20px 24px; border-bottom: 1px solid #222; }
+  .acal-header h2 { font-size: 15px; font-weight: 600; color: #ddd; }
+  .acal-header p { font-size: 12px; color: #555; margin-top: 2px; }
+  .acal-row { display: grid; grid-template-columns: 200px 1fr; gap: 16px; align-items: center; padding: 14px 24px; border-bottom: 1px solid #1e1e1e; transition: background 0.1s; }
+  .acal-row:last-child { border-bottom: none; }
+  .acal-row:hover { background: #1e1e1e; }
+  .acal-event-label { font-size: 12px; color: #888; }
+  .acal-event-date { font-size: 13px; font-weight: 600; color: #ddd; }
+  .acal-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex-shrink: 0; }
+
+  /* ── PROFILE ── */
+  .profile-wrap { padding: 20px 32px; }
+  .profile-layout { display: grid; grid-template-columns: 300px 1fr; gap: 16px; }
+  .profile-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; overflow: hidden; }
+  .profile-banner { height: 90px; background: linear-gradient(135deg, #0f2d12 0%, #0d1e35 100%); }
+  .profile-avatar-area { padding: 0 20px; margin-top: -36px; margin-bottom: 16px; display: flex; align-items: flex-end; gap: 14px; }
+  .profile-avatar { width: 68px; height: 68px; border-radius: 50%; background: #2e7d32; border: 3px solid #1c1c1c; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .profile-name-area { padding-bottom: 4px; }
+  .profile-name { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .profile-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .profile-tag { padding: 2px 9px; border-radius: 5px; font-size: 10px; background: #252525; border: 1px solid #333; color: #aaa; }
+  .profile-details { padding: 0 20px 20px; }
+  .profile-contact-row { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+  .profile-contact-item { font-size: 12px; color: #777; display: flex; align-items: center; gap: 6px; }
+  .profile-contact-item a { color: #60a5fa; text-decoration: none; }
+  .profile-contact-item a:hover { text-decoration: underline; }
+  .profile-quick-links { display: flex; flex-direction: column; gap: 6px; }
+  .profile-quick-link { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 10px; font-size: 12px; color: #aaa; cursor: pointer; transition: all 0.15s; }
+  .profile-quick-link:hover { background: #222; border-color: #333; color: #ddd; }
+  .profile-quick-link svg { width: 14px; height: 14px; flex-shrink: 0; color: #555; }
+  .info-sections { display: flex; flex-direction: column; gap: 12px; }
+  .info-card { background: #1c1c1c; border: 1px solid #2a2a2a; border-radius: 10px; padding: 20px 22px; }
+  .info-card-title { font-size: 11px; font-weight: 600; color: #555; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+  .info-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .info-item {}
+  .info-item-label { font-size: 10px; color: #555; margin-bottom: 3px; display: flex; align-items: center; gap: 4px; }
+  .info-item-value { font-size: 13px; color: #ddd; font-weight: 500; }
+
+  /* ── EDIT HINT ── */
   .edit-hint { text-align: center; padding: 10px; font-size: 11px; color: #555; background: #161616; border-top: 1px solid #222; position: fixed; bottom: 0; left: 210px; right: 0; z-index: 4; }
   .edit-hint span { color: #f0a500; }
 
-  /* ══════════════════════════════════════════
-     MOBILE  ≤ 768px  — sidebar slides in from left
-  ══════════════════════════════════════════ */
+  /* ══════════════════
+     MOBILE ≤ 768px
+  ══════════════════ */
   @media (max-width: 768px) {
-    /* sidebar hidden off-screen; slides in when .open */
     .sidebar { transform: translateX(-100%); }
     .sidebar.open { transform: translateX(0); }
-
-    /* overlay active when sidebar open */
     .sidebar-overlay { display: block; pointer-events: none; }
     .sidebar-overlay.open { pointer-events: all; }
-
-    /* hamburger visible */
     .hamburger { display: flex; }
-
-    /* main fills full width */
     .main { margin-left: 0; padding-bottom: 60px; }
-
-    /* topbar */
     .topbar { padding: 11px 14px; gap: 8px; }
     .topbar-title { font-size: 15px; }
-
-    /* tabs — horizontal scroll */
     .tabs { padding: 12px 12px 0; gap: 6px; justify-content: flex-start; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .tabs::-webkit-scrollbar { display: none; }
     .tab { padding: 7px 14px; font-size: 12px; white-space: nowrap; flex-shrink: 0; }
-
-    /* overview */
-    .overview-wrap { padding: 14px; }
-    .chart-card { padding: 14px 12px 10px; }
+    .overview-wrap, .att-wrap, .gpa-wrap, .exams-wrap, .subjects-wrap, .fee-wrap, .acal-wrap, .profile-wrap { padding: 14px; }
     .chart-container { height: 190px; }
     .sem-cards { flex-wrap: wrap; gap: 10px; }
     .sem-card { min-width: calc(50% - 5px); }
-    .overview-actions { flex-direction: column; gap: 10px; }
-    .action-btn { width: 100%; flex-direction: row; justify-content: center; gap: 10px; padding: 13px 16px; }
-
-    /* marks */
-    .controls { padding: 12px 14px; }
-    .grid { grid-template-columns: 1fr !important; gap: 12px; padding: 0 14px; }
+    .marks-grid { grid-template-columns: 1fr !important; gap: 12px; padding: 0 14px; }
     .card { padding: 16px; }
-
-    /* semester */
-    .sem-controls { padding: 12px 14px; gap: 8px; }
-    .sem-grid { padding: 0 14px; gap: 10px; }
-    .sem-subject-card { padding: 14px 14px; }
-    .sem-subject-name { font-size: 12px; white-space: normal; }
-
-    /* login page */
+    .controls, .sem-controls { padding: 12px 14px; }
+    .sem-grid { padding: 0 14px; }
+    .sem-subject-card { padding: 14px; }
+    .sem-subject-name { white-space: normal; }
+    .att-grid { grid-template-columns: 1fr 1fr; }
+    .subj-grid, .choices-grid { grid-template-columns: 1fr 1fr; }
+    .att-dtd-layout { grid-template-columns: 1fr; }
+    .exams-layout { grid-template-columns: 1fr; }
+    .profile-layout { grid-template-columns: 1fr; }
     .login-body { padding: 20px 14px; align-items: flex-start; }
     .login-card { flex-direction: column; }
     .login-left { width: 100%; flex-direction: row; padding: 18px 20px; gap: 12px; border-right: none; border-bottom: 1px solid #222; }
     .login-right { padding: 20px 18px; }
     .login-quick-btns { flex-direction: column; }
     .quick-btn { width: 100%; justify-content: center; }
-
-    /* edit hint */
     .edit-hint { left: 0; font-size: 10px; padding: 8px 12px; }
+    .overview-actions { flex-direction: column; gap: 10px; }
+    .action-btn { width: 100%; flex-direction: row; justify-content: center; gap: 10px; padding: 13px 16px; }
+    .gpa-table-header, .gpa-row { grid-template-columns: 1fr 70px 80px 36px; }
+  }
+  @media (max-width: 480px) {
+    .att-grid { grid-template-columns: 1fr; }
+    .subj-grid, .choices-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- MOBILE OVERLAY -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+<!-- ═══════════════════════════
+     LOGIN PAGE
+═══════════════════════════ -->
 <div id="login-page">
   <div class="login-topbar">
     <span class="login-topbar-title">Modern JIIT WebKiosk</span>
@@ -300,7 +512,7 @@
           <div class="login-input-wrap">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
             <input class="login-input" id="pwInput" type="password" placeholder="Enter password" autocomplete="off">
-            <button class="pw-toggle" onclick="togglePw()" id="pwToggle">
+            <button class="pw-toggle" onclick="togglePw()">
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
             </button>
           </div>
@@ -315,7 +527,7 @@
         <div class="login-quick-btns">
           <div class="quick-btn demo" onclick="doLogin(true)">⚡ Demo Access</div>
           <div class="quick-btn mess">🍽️ Mess Menu</div>
-          <div class="quick-btn cal">📅 Academic Calendar</div>
+          <div class="quick-btn cal" onclick="doLogin(true)">📅 Academic Calendar</div>
         </div>
       </div>
     </div>
@@ -323,275 +535,533 @@
   <div class="login-footer">Created with ❤️ for JIIT students only &nbsp;·&nbsp; <span>Not liable for attendance-related emotional damage 😅</span></div>
 </div>
 
-<!-- SIDEBAR -->
-<aside class="sidebar">
+<!-- ═══════════════════════════
+     SIDEBAR
+═══════════════════════════ -->
+<aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="logo-icon">🌿</div>
     <span class="logo-text">JP PORTAL</span>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Attendance</div>
-    <div class="nav-item active"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Grades</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>GPA Calculator</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Exams</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Subjects</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Fee</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Academic Calendar</div>
-    <div class="nav-item"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>Profile</div>
+    <div class="nav-item" onclick="navigateTo('attendance',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Attendance
+    </div>
+    <div class="nav-item active" onclick="navigateTo('grades',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Grades
+    </div>
+    <div class="nav-item" onclick="navigateTo('gpa',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>GPA Calculator
+    </div>
+    <div class="nav-item" onclick="navigateTo('exams',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>Exams
+    </div>
+    <div class="nav-item" onclick="navigateTo('subjects',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>Subjects
+    </div>
+    <div class="nav-item" onclick="navigateTo('fee',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Fee
+    </div>
+    <div class="nav-item" onclick="navigateTo('acal',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Academic Calendar
+    </div>
+    <div class="nav-item" onclick="navigateTo('profile',this)">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>Profile
+    </div>
   </nav>
+  <div class="sidebar-footer">
+    <div class="sidebar-avatar">AB</div>
+    <span class="sidebar-username">Ansh Bhardwaj</span>
+  </div>
 </aside>
 
-<!-- MAIN -->
+<!-- ═══════════════════════════
+     MAIN
+═══════════════════════════ -->
 <main class="main">
   <div class="topbar">
-    <span class="topbar-title">JP Portal</span>
+    <div class="topbar-left">
+      <div class="hamburger" onclick="openSidebar()">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </div>
+      <span class="topbar-title" id="topbarTitle">Grades</span>
+      <span class="topbar-semester">2026EVESEM</span>
+    </div>
     <div class="topbar-actions">
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg>
     </div>
   </div>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab" onclick="switchTab('overview',this)">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Overview
-    </div>
-    <div class="tab" onclick="switchTab('marks',this)">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Marks
-    </div>
-    <div class="tab active" onclick="switchTab('semester',this)">
-      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>Semester
-    </div>
-  </div>
-
-  <!-- ═══ OVERVIEW VIEW ═══ -->
-  <div id="view-overview" class="view">
-    <div class="overview-wrap">
-      <div class="chart-card">
-        <div class="chart-title">Grade Progression</div>
-        <div class="chart-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>SGPA</div>
-          <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>CGPA</div>
-        </div>
-        <div class="chart-container"><canvas id="gradeChart"></canvas></div>
+  <!-- ╔═══════════════════╗
+       ║  GRADES SECTION   ║
+       ╚═══════════════════╝ -->
+  <div class="section-view active" id="sec-grades">
+    <div class="tabs">
+      <div class="tab" onclick="switchTab('overview',this,'grades')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Overview
       </div>
-      <div class="sem-cards">
-        <div class="sem-card">
-          <div class="sem-card-title">Semester 1</div>
-          <div class="sem-card-gp">GP: 157.0/225</div>
-          <div class="sem-card-scores">
-            <div class="sem-score"><div class="sem-score-val sgpa">7</div><div class="sem-score-label">SGPA</div></div>
-            <div class="sem-score"><div class="sem-score-val cgpa">7</div><div class="sem-score-label">CGPA</div></div>
+      <div class="tab" onclick="switchTab('marks',this,'grades')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Marks
+      </div>
+      <div class="tab active" onclick="switchTab('semester',this,'grades')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>Semester
+      </div>
+    </div>
+
+    <!-- Overview -->
+    <div id="view-overview" class="view">
+      <div class="overview-wrap">
+        <div class="chart-card">
+          <div class="chart-title">Grade Progression</div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:#4ade80"></div>SGPA</div>
+            <div class="legend-item"><div class="legend-dot" style="background:#60a5fa"></div>CGPA</div>
           </div>
+          <div class="chart-container"><canvas id="gradeChart"></canvas></div>
         </div>
-        <div class="sem-card">
-          <div class="sem-card-title">Semester 2</div>
-          <div class="sem-card-gp">GP: 119.5/185</div>
-          <div class="sem-card-scores">
-            <div class="sem-score"><div class="sem-score-val sgpa">6.5</div><div class="sem-score-label">SGPA</div></div>
-            <div class="sem-score"><div class="sem-score-val cgpa">6.7</div><div class="sem-score-label">CGPA</div></div>
+        <div class="sem-cards">
+          <div class="sem-card"><div class="sem-card-title">Semester 1</div><div class="sem-card-gp">GP: 157.0/225</div><div class="sem-card-scores"><div class="sem-score"><div class="sem-score-val sgpa">7.00</div><div class="sem-score-label">SGPA</div></div><div class="sem-score"><div class="sem-score-val cgpa">7.00</div><div class="sem-score-label">CGPA</div></div></div></div>
+          <div class="sem-card"><div class="sem-card-title">Semester 2</div><div class="sem-card-gp">GP: 119.5/185</div><div class="sem-card-scores"><div class="sem-score"><div class="sem-score-val sgpa">6.50</div><div class="sem-score-label">SGPA</div></div><div class="sem-score"><div class="sem-score-val cgpa">6.70</div><div class="sem-score-label">CGPA</div></div></div></div>
+          <div class="sem-card"><div class="sem-card-title">Semester 3</div><div class="sem-card-gp">GP: 169.0/240</div><div class="sem-card-scores"><div class="sem-score"><div class="sem-score-val sgpa">7.04</div><div class="sem-score-label">SGPA</div></div><div class="sem-score"><div class="sem-score-val cgpa">6.85</div><div class="sem-score-label">CGPA</div></div></div></div>
+          <div class="sem-card"><div class="sem-card-title">Semester 4</div><div class="sem-card-gp">&nbsp;</div><div class="sem-card-scores"><div class="sem-score"><div class="sem-score-val sgpa">6.54</div><div class="sem-score-label">SGPA</div></div><div class="sem-score"><div class="sem-score-val cgpa">6.81</div><div class="sem-score-label">CGPA</div></div></div></div>
+        </div>
+        <div class="overview-actions">
+          <div class="action-btn" onclick="navigateTo('gpa',document.querySelector('.nav-item:nth-child(3)'))">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>GPA Calculator
           </div>
-        </div>
-        <div class="sem-card">
-          <div class="sem-card-title">Semester 3</div>
-          <div class="sem-card-gp">GP: 169.0/240</div>
-          <div class="sem-card-scores">
-            <div class="sem-score"><div class="sem-score-val sgpa">7.04</div><div class="sem-score-label">SGPA</div></div>
-            <div class="sem-score"><div class="sem-score-val cgpa">6.85</div><div class="sem-score-label">CGPA</div></div>
-          </div>
-        </div>
-        <div class="sem-card">
-          <div class="sem-card-title">Semester 4</div>
-          <div class="sem-card-gp">&nbsp;</div>
-          <div class="sem-card-scores">
-            <div class="sem-score"><div class="sem-score-val sgpa">6.54</div><div class="sem-score-label">SGPA</div></div>
-            <div class="sem-score"><div class="sem-score-val cgpa">6.81</div><div class="sem-score-label">CGPA</div></div>
+          <div class="action-btn" onclick="downloadMarks()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Marks
           </div>
         </div>
       </div>
-      <div class="overview-actions">
-        <div class="action-btn">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
-          GPA Calculator
+    </div>
+
+    <!-- Marks -->
+    <div id="view-marks" class="view">
+      <div class="controls">
+        <select class="semester-select"><option>2026EVESEM</option><option>2025ODDSEM</option><option>2025EVESEM</option></select>
+      </div>
+      <div class="marks-grid" id="subjectGrid"></div>
+      <button class="download-btn" onclick="downloadMarks()">
+        <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Marks
+      </button>
+    </div>
+
+    <!-- Semester -->
+    <div id="view-semester" class="view active">
+      <div class="sem-controls">
+        <select class="semester-select" id="semesterSelect" onchange="renderSemester()">
+          <option value="2026EVESEM">2026EVESEM</option>
+          <option value="2025ODDSEM">2025ODDSEM</option>
+          <option value="2025EVESEM">2025EVESEM</option>
+          <option value="2024ODDSEM">2024ODDSEM</option>
+        </select>
+        <div class="credits-badge" id="totalCredits">Total Credits: 24</div>
+        <div class="filter-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>Grade</div>
+        <div class="filter-btn"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>Credit</div>
+      </div>
+      <div class="sem-grid" id="semGrid"></div>
+    </div>
+  </div>
+
+  <!-- ╔═══════════════════════╗
+       ║  ATTENDANCE SECTION   ║
+       ╚═══════════════════════╝ -->
+  <div class="section-view" id="sec-attendance">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('att-overview',this,'attendance')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>Overview
+      </div>
+      <div class="tab" onclick="switchTab('att-daytoday',this,'attendance')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Day-to-Day
+      </div>
+    </div>
+    <div id="view-att-overview" class="view active">
+      <div class="att-wrap">
+        <div class="att-notice">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div><strong>Daily Attendance Update</strong> &nbsp;<span class="att-notice-text">Attendance marked for today typically reflects on the portal by tomorrow morning</span></div>
         </div>
-        <div class="action-btn" onclick="downloadMarks()">
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-          Download Marks
+        <div class="att-grid" id="attGrid"></div>
+      </div>
+    </div>
+    <div id="view-att-daytoday" class="view">
+      <div class="att-wrap">
+        <div class="att-notice">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div><strong>Daily Attendance Update</strong> &nbsp;<span class="att-notice-text">Attendance marked for today typically reflects on the portal by tomorrow morning</span></div>
+        </div>
+        <div class="att-dtd-layout">
+          <div class="cal-card">
+            <div class="cal-header">
+              <span class="cal-month-label">June 2026</span>
+              <div class="cal-nav-btns"><button class="cal-nav-btn">‹</button><button class="cal-nav-btn">›</button></div>
+            </div>
+            <div class="cal-grid">
+              <div class="cal-day-hdr">SU</div><div class="cal-day-hdr">MO</div><div class="cal-day-hdr">TU</div><div class="cal-day-hdr">WE</div><div class="cal-day-hdr">TH</div><div class="cal-day-hdr">FR</div><div class="cal-day-hdr">SA</div>
+              <div class="cal-day other">31</div><div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day today">6</div>
+              <div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div>
+              <div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div>
+              <div class="cal-day">21</div><div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div>
+              <div class="cal-day">28</div><div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day other">1</div><div class="cal-day other">2</div><div class="cal-day other">3</div><div class="cal-day other">4</div>
+            </div>
+          </div>
+          <div class="day-view-card">
+            <div class="day-view-date">Fri, Jun 6, 2026</div>
+            <div><span class="day-view-badge">TODAY</span></div>
+            <div class="no-classes">
+              <div class="no-classes-icon">📅</div>
+              <h3>No classes scheduled</h3>
+              <p>Enjoy your free time!</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ═══ MARKS VIEW ═══ -->
-  <div id="view-marks" class="view">
-    <div class="controls">
-      <select class="semester-select">
-        <option>2026EVESEM</option>
-        <option>2025ODDSEM</option>
-        <option>2025EVESEM</option>
-      </select>
-    </div>
-    <div class="grid" id="subjectGrid"></div>
-    <button class="download-btn" onclick="downloadMarks()">
-      <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-      Download Marks
-    </button>
-  </div>
-
-  <!-- ═══ SEMESTER VIEW ═══ -->
-  <div id="view-semester" class="view active">
-    <div class="sem-controls">
-      <select class="semester-select" id="semesterSelect" onchange="renderSemester()">
-        <option value="2026EVESEM">2026EVESEM</option>
-        <option value="2025ODDSEM">2025ODDSEM</option>
-        <option value="2025EVESEM">2025EVESEM</option>
-        <option value="2024ODDSEM">2024ODDSEM</option>
-      </select>
-      <div class="credits-badge" id="totalCredits">Total Credits: 24</div>
-      <div class="filter-btn">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
-        Grade
-      </div>
-      <div class="filter-btn">
-        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h13M3 8h9m-9 4h6m4 0l4-4m0 0l4 4m-4-4v12"/></svg>
-        Credit
+  <!-- ╔════════════════════════╗
+       ║  GPA CALCULATOR       ║
+       ╚════════════════════════╝ -->
+  <div class="section-view" id="sec-gpa">
+    <div class="gpa-wrap">
+      <div class="gpa-card">
+        <div class="gpa-result-box">
+          <div class="gpa-result-num" id="gpaDisplay">—</div>
+          <div class="gpa-result-label">CALCULATED SGPA</div>
+        </div>
+        <div class="gpa-table-header">
+          <span>Subject</span><span>Credits</span><span>Grade Points</span><span></span>
+        </div>
+        <div id="gpaRows"></div>
+        <div class="gpa-actions">
+          <button class="gpa-add-btn" onclick="addGpaRow()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>Add Subject
+          </button>
+          <button class="gpa-calc-btn" onclick="calcGpa()">Calculate</button>
+          <button class="gpa-clear-btn" onclick="clearGpa()">Clear All</button>
+        </div>
       </div>
     </div>
-    <div class="sem-grid" id="semGrid"></div>
   </div>
 
+  <!-- ╔═════════════╗
+       ║   EXAMS     ║
+       ╚═════════════╝ -->
+  <div class="section-view" id="sec-exams">
+    <div class="exams-wrap">
+      <div class="exams-layout">
+        <div class="exams-sidebar">
+          <div>
+            <div class="exams-select-label">Select Semester</div>
+            <div class="exams-select-item active">2026EVESEM &nbsp;▾</div>
+          </div>
+          <div>
+            <div class="exams-select-label">Select Exam Event</div>
+            <div class="exams-select-item">MAKEUP TEST-20 MARKS &nbsp;▾</div>
+          </div>
+        </div>
+        <div class="exams-main">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <h3>No Exam Schedule Available</h3>
+          <p>There are no exams scheduled for the selected exam event. Please check back later or select a different exam event.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════════╗
+       ║  SUBJECTS    ║
+       ╚══════════════╝ -->
+  <div class="section-view" id="sec-subjects">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('subj-registered',this,'subjects')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>Registered
+      </div>
+      <div class="tab" onclick="switchTab('subj-choices',this,'subjects')">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"/></svg>Choices
+      </div>
+    </div>
+    <div id="view-subj-registered" class="view active">
+      <div class="subjects-wrap">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <span style="font-size:12px;color:#666">Total Credits: 24 &nbsp;·&nbsp; 2026EVESEM</span>
+          <button class="download-btn" style="margin:0;padding:8px 16px;font-size:12px">
+            <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9h18M9 21V9"/></svg>Create Timetable
+          </button>
+        </div>
+        <div class="subj-grid" id="subjGrid"></div>
+      </div>
+    </div>
+    <div id="view-subj-choices" class="view">
+      <div class="subjects-wrap">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+          <span style="font-size:12px;color:#666">2026EVESEM &nbsp;·&nbsp; 24 credits selected</span>
+          <span style="font-size:11px;color:#4ade80;background:#0f2d12;border:1px solid #1a3d1e;padding:3px 12px;border-radius:20px">Finalized</span>
+        </div>
+        <div id="choicesContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔══════════╗
+       ║   FEE    ║
+       ╚══════════╝ -->
+  <div class="section-view" id="sec-fee">
+    <div class="fee-wrap">
+      <div class="fee-card">
+        <div class="fee-card-title">Fee Details — 2026EVESEM</div>
+        <div class="fee-row"><span class="fee-label">Tuition Fee</span><span class="fee-amount fee-paid">₹ 85,000</span></div>
+        <div class="fee-row"><span class="fee-label">Development Fee</span><span class="fee-amount fee-paid">₹ 12,000</span></div>
+        <div class="fee-row"><span class="fee-label">Examination Fee</span><span class="fee-amount fee-paid">₹ 2,000</span></div>
+        <div class="fee-row"><span class="fee-label">Library Fee</span><span class="fee-amount fee-paid">₹ 1,500</span></div>
+        <div class="fee-row"><span class="fee-label">Sports Fee</span><span class="fee-amount fee-paid">₹ 500</span></div>
+        <div class="fee-row"><span class="fee-label">Late Fine</span><span class="fee-amount" style="color:#555">₹ 0</span></div>
+        <div class="fee-row fee-total-row"><span class="fee-total-label">Total Payable</span><span class="fee-amount fee-total-amount">₹ 1,01,000</span></div>
+        <div class="fee-status-box">✓ All dues cleared for the current semester</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔═══════════════════════╗
+       ║  ACADEMIC CALENDAR    ║
+       ╚═══════════════════════╝ -->
+  <div class="section-view" id="sec-acal">
+    <div class="acal-wrap">
+      <div class="acal-card">
+        <div class="acal-header">
+          <h2>Academic Calendar 2025–2026</h2>
+          <p>Key dates for the current academic year</p>
+        </div>
+        <div class="acal-row"><span class="acal-event-label">Semester Start (Even)</span><span class="acal-event-date">Jan 6, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">T1 Examinations</span><span class="acal-event-date">Feb 17 – Feb 21, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">Mid-Semester Break</span><span class="acal-event-date">Mar 14 – Mar 15, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">T2 Examinations</span><span class="acal-event-date">Apr 7 – Apr 11, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">End Term Examinations</span><span class="acal-event-date">May 18 – Jun 4, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">Result Declaration</span><span class="acal-event-date">Jun 20, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">Summer Break</span><span class="acal-event-date">Jun 6 – Jul 31, 2026</span></div>
+        <div class="acal-row"><span class="acal-event-label">Semester Start (Odd)</span><span class="acal-event-date">Aug 3, 2026</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ╔════════════╗
+       ║  PROFILE   ║
+       ╚════════════╝ -->
+  <div class="section-view" id="sec-profile">
+    <div class="profile-wrap">
+      <div class="profile-layout">
+        <div>
+          <div class="profile-card" style="margin-bottom:12px">
+            <div class="profile-banner"></div>
+            <div class="profile-avatar-area">
+              <div class="profile-avatar">AB</div>
+              <div class="profile-name-area">
+                <div class="profile-name">Ansh Bhardwaj</div>
+                <div class="profile-tags"><span class="profile-tag">ECE</span><span class="profile-tag">Sem 4</span><span class="profile-tag">Batch A3</span><span class="profile-tag">Hostel</span></div>
+              </div>
+            </div>
+            <div class="profile-details">
+              <div class="profile-contact-row">
+                <div class="profile-contact-item">📧 <a href="#">34070310@mail.jiit.ac.in</a></div>
+                <div class="profile-contact-item">📱 34070310</div>
+                <div class="profile-contact-item">🎓 ECE &nbsp;·&nbsp; Section ECE &nbsp;·&nbsp; JIIT</div>
+              </div>
+            </div>
+          </div>
+          <div class="profile-quick-links">
+            <div class="profile-quick-link"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>Timetable</div>
+            <div class="profile-quick-link"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>GPA Calculator</div>
+            <div class="profile-quick-link"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Fee Details</div>
+            <div class="profile-quick-link"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>Download Documents</div>
+          </div>
+        </div>
+        <div class="info-sections">
+          <div class="info-card">
+            <div class="info-card-title">Personal Information</div>
+            <div class="info-rows">
+              <div class="info-item"><div class="info-item-label">📅 Date of Birth</div><div class="info-item-value">03-07-2007</div></div>
+              <div class="info-item"><div class="info-item-label">🩸 Blood Group</div><div class="info-item-value">AB+</div></div>
+              <div class="info-item"><div class="info-item-label">⚧ Gender</div><div class="info-item-value">Male</div></div>
+              <div class="info-item"><div class="info-item-label">🌏 Nationality</div><div class="info-item-value">Indian</div></div>
+              <div class="info-item"><div class="info-item-label">Category</div><div class="info-item-value">GEN</div></div>
+              <div class="info-item"><div class="info-item-label">Aadhar ID</div><div class="info-item-value">N/A</div></div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">Academic Details</div>
+            <div class="info-rows">
+              <div class="info-item"><div class="info-item-label">Admission Year</div><div class="info-item-value">2425</div></div>
+              <div class="info-item"><div class="info-item-label">Academic Year</div><div class="info-item-value">2425</div></div>
+              <div class="info-item"><div class="info-item-label">Institute Code</div><div class="info-item-value">JIIT</div></div>
+              <div class="info-item"><div class="info-item-label">Section</div><div class="info-item-value">ECE / A3</div></div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-title">Bank Details</div>
+            <div class="info-rows">
+              <div class="info-item"><div class="info-item-label">Bank Name</div><div class="info-item-value">Punjab National Bank</div></div>
+              <div class="info-item"><div class="info-item-label">Designation</div><div class="info-item-value">Asst. Manager</div></div>
+              <div class="info-item"><div class="info-item-label">Account</div><div class="info-item-value" style="font-size:11px">1905000012069S</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 
 <div class="edit-hint">💡 Click any <span>orange score</span> in the Marks tab to edit it instantly</div>
 
 <script>
-// ── SEMESTER DATA ──
-const semesterData = {
-  '2026EVESEM': {
-    credits: 24,
+// ══════════════════════════════════════════
+//  SIDEBAR NAVIGATION
+// ══════════════════════════════════════════
+const sectionTitles = { grades:'Grades', attendance:'Attendance', gpa:'GPA Calculator', exams:'Exams', subjects:'Subjects', fee:'Fee', acal:'Academic Calendar', profile:'Profile' };
 
-    subjects: [
-      { name: 'ANALOGUE ELECTRONICS', code: '15B11EC411', grade: 'B+', credits: 4 },
-      { name: 'Analogue Electronics Lab', code: '15B11EC471', grade: 'C', credits: 1 },
-      { name: 'DIGITAL SIGNAL PROCESSING', code: '15B11EC413', grade: 'B', credits: 4 },
-      { name: 'DIGITAL SIGNAL PROCESSING LAB', code: '15B17EC473', grade: 'B', credits: 1 },
-      { name: 'TELECOMMUNICATION NETWORKS', code: '15B11EC611', grade: 'C+', credits: 3 },
-      { name: 'PRINCIPLES OF MANAGEMENT', code: '15B1NHS434', grade: 'C', credits: 3 },
-      { name: 'ANALOG AND DIGITAL COMMUNICATION', code: '18B11EC212', grade: 'C', credits: 4 },
-      { name: 'ANALOG AND DIGITAL COMMUNICATION LAB', code: '18B15EC212', grade: 'B', credits: 1 },
-      { name: 'INTRODUCTION TO DIGITAL IMAGE AND VIDEO PROCESSING', code: '20B12EC211', grade: 'B+', credits: 3 },
-    ]
-  },
-  '2025ODDSEM': {
-    credits: 27.0,
-    subjects: [
-      { name: 'ECONOMICS', code: '15B11HS211', grade: 'C+', credits: 3 },
-      { name: 'PROBABILITY AND RANDOM PROCESSES', code: '15B11MA301', grade: 'B', credits: 4 },
-      { name: 'SIGNALS & SYSTEMS', code: '18B11EC214', grade: 'B', credits: 4 },
-      { name: 'DIGITAL CIRCUIT DESIGN', code: '18B11EC215', grade: 'B', credits: 4 },
-      { name: 'SIGNALS & SYSTEMS LAB', code: '18B15EC214', grade: 'B+', credits: 1 },
-      { name: 'DIGITAL CIRCUIT DESIGN LAB', code: '18B15EC215', grade: 'B+', credits: 1 },
-      { name: 'ENVIRONMENTAL STUDIES', code: '19B13BT211', grade: 'C', credits: 3 },
-      { name: 'Electronic Devices and Circuits', code: '24B11EC211', grade: 'B', credits: 4 },
-      { name: 'Electronic Devices and Circuits Lab', code: '24B15EC211', grade: 'C', credits: 1 },
-      { name: 'Summer Training-I', code: '24B17EC211', grade: 'A', credits: 2 },
-    ]
-  },
-  '2025EVESEM': {
-    credits: 20.5,
-    subjects: [
-      { name: 'SOFTWARE DEVELOPMENT FUNDAMENTALS-2', code: '15B11CI211', grade: 'B', credits: 4 },
-      { name: 'MATHEMATICS-2', code: '15B11MA211', grade: 'C+', credits: 4 },
-      { name: 'PHYSICS-2', code: '15B11PH211', grade: 'C+', credits: 4 },
-      { name: 'PHYSICS LAB-2', code: '15B17PH271', grade: 'B', credits: 1 },
-      { name: 'ENGINEERING DRAWING & DESIGN', code: '18B15GE111', grade: 'B', credits: 1.5 },
-      { name: 'Universal Human Values (UHV)', code: '24B11HS111', grade: 'C+', credits: 3 },
-      { name: 'Software Development Lab-II', code: '24B15CS121', grade: 'B+', credits: 1 },
-      { name: 'Life Skills and Professional Communication Lab', code: '24B16HS111', grade: 'C', credits: 2 },
-    ]
-  },
-  '2024ODDSEM': {
-    credits: 22.5,
-    subjects: [
-      { name: 'SOFTWARE DEVELOPMENT FUNDAMENTALS-1', code: '15B11CI111', grade: 'C', credits: 4 },
-      { name: 'ENGLISH', code: '15B11HS112', grade: 'C', credits: 2 },
-      { name: 'MATHEMATICS-1', code: '15B11MA111', grade: 'B+', credits: 4 },
-      { name: 'PHYSICS-1', code: '15B11PH111', grade: 'B', credits: 4 },
-      { name: 'PHYSICS LAB-1', code: '15B17PH171', grade: 'B+', credits: 1 },
-      { name: 'WORKSHOP', code: '18B15GE112', grade: 'B+', credits: 1.5 },
-      { name: 'Basic Electronics', code: '24B11EC111', grade: 'B+', credits: 4 },
-      { name: 'Software Development Fundamentals Lab-I', code: '24B15CS111', grade: 'C+', credits: 1 },
-      { name: 'Basic Electronics Lab', code: '24B15EC111', grade: 'A', credits: 1 },
-    ]
-  }
+function navigateTo(key, el) {
+  document.querySelectorAll('.section-view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + key).classList.add('active');
+  document.getElementById('topbarTitle').textContent = sectionTitles[key] || key;
+  if (el) el.classList.add('active');
+  closeSidebar();
+}
+
+// ══════════════════════════════════════════
+//  TAB SWITCHING
+// ══════════════════════════════════════════
+function switchTab(viewId, tabEl, section) {
+  const sec = document.getElementById('sec-' + section);
+  sec.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  sec.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-' + viewId).classList.add('active');
+  tabEl.classList.add('active');
+  if (viewId === 'overview' && !window.chartBuilt) buildChart();
+}
+
+// ══════════════════════════════════════════
+//  MOBILE SIDEBAR
+// ══════════════════════════════════════════
+function openSidebar() {
+  document.getElementById('sidebar').classList.add('open');
+  document.getElementById('sidebarOverlay').classList.add('open');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+// ══════════════════════════════════════════
+//  LOGIN
+// ══════════════════════════════════════════
+function togglePw() {
+  const inp = document.getElementById('pwInput');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+function doLogin(demo) {
+  const enroll = document.getElementById('enrollInput').value.trim();
+  const pw = document.getElementById('pwInput').value.trim();
+  const err = document.getElementById('loginError');
+  if (!demo && (!enroll || !pw)) { err.textContent = 'Please enter your enrollment number and password.'; return; }
+  err.textContent = '';
+  const page = document.getElementById('login-page');
+  page.style.opacity = '0';
+  page.style.transition = 'opacity 0.4s ease';
+  setTimeout(() => { page.classList.add('hidden'); }, 400);
+}
+document.getElementById('pwInput').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+document.getElementById('enrollInput').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('pwInput').focus(); });
+
+// ══════════════════════════════════════════
+//  SEMESTER DATA
+// ══════════════════════════════════════════
+const semesterData = {
+  '2026EVESEM': { credits: 24, subjects: [
+    { name:'ANALOGUE ELECTRONICS', code:'15B11EC411', grade:'B+', credits:4 },
+    { name:'Analogue Electronics Lab', code:'15B11EC471', grade:'C', credits:1 },
+    { name:'DIGITAL SIGNAL PROCESSING', code:'15B11EC413', grade:'B', credits:4 },
+    { name:'DIGITAL SIGNAL PROCESSING LAB', code:'15B17EC473', grade:'B', credits:1 },
+    { name:'TELECOMMUNICATION NETWORKS', code:'15B11EC611', grade:'C+', credits:3 },
+    { name:'PRINCIPLES OF MANAGEMENT', code:'15B1NHS434', grade:'C', credits:3 },
+    { name:'ANALOG AND DIGITAL COMMUNICATION', code:'18B11EC212', grade:'C', credits:4 },
+    { name:'ANALOG AND DIGITAL COMMUNICATION LAB', code:'18B15EC212', grade:'B', credits:1 },
+    { name:'INTRODUCTION TO DIGITAL IMAGE AND VIDEO PROCESSING', code:'20B12EC211', grade:'B+', credits:3 },
+  ]},
+  '2025ODDSEM': { credits: 27, subjects: [
+    { name:'ECONOMICS', code:'15B11HS211', grade:'C+', credits:3 },
+    { name:'PROBABILITY AND RANDOM PROCESSES', code:'15B11MA301', grade:'B', credits:4 },
+    { name:'SIGNALS & SYSTEMS', code:'18B11EC214', grade:'B', credits:4 },
+    { name:'DIGITAL CIRCUIT DESIGN', code:'18B11EC215', grade:'B', credits:4 },
+    { name:'SIGNALS & SYSTEMS LAB', code:'18B15EC214', grade:'B+', credits:1 },
+    { name:'DIGITAL CIRCUIT DESIGN LAB', code:'18B15EC215', grade:'B+', credits:1 },
+    { name:'ENVIRONMENTAL STUDIES', code:'19B13BT211', grade:'C', credits:3 },
+    { name:'Electronic Devices and Circuits', code:'24B11EC211', grade:'B', credits:4 },
+    { name:'Electronic Devices and Circuits Lab', code:'24B15EC211', grade:'C', credits:1 },
+    { name:'Summer Training-I', code:'24B17EC211', grade:'A', credits:2 },
+  ]},
+  '2025EVESEM': { credits: 20.5, subjects: [
+    { name:'SOFTWARE DEVELOPMENT FUNDAMENTALS-2', code:'15B11CI211', grade:'B', credits:4 },
+    { name:'MATHEMATICS-2', code:'15B11MA211', grade:'C+', credits:4 },
+    { name:'PHYSICS-2', code:'15B11PH211', grade:'C+', credits:4 },
+    { name:'PHYSICS LAB-2', code:'15B17PH271', grade:'B', credits:1 },
+    { name:'ENGINEERING DRAWING & DESIGN', code:'18B15GE111', grade:'B', credits:1.5 },
+    { name:'Universal Human Values (UHV)', code:'24B11HS111', grade:'C+', credits:3 },
+    { name:'Software Development Lab-II', code:'24B15CS121', grade:'B+', credits:1 },
+    { name:'Life Skills and Professional Communication Lab', code:'24B16HS111', grade:'C', credits:2 },
+  ]},
+  '2024ODDSEM': { credits: 22.5, subjects: [
+    { name:'SOFTWARE DEVELOPMENT FUNDAMENTALS-1', code:'15B11CI111', grade:'C', credits:4 },
+    { name:'ENGLISH', code:'15B11HS112', grade:'C', credits:2 },
+    { name:'MATHEMATICS-1', code:'15B11MA111', grade:'B+', credits:4 },
+    { name:'PHYSICS-1', code:'15B11PH111', grade:'B', credits:4 },
+    { name:'PHYSICS LAB-1', code:'15B17PH171', grade:'B+', credits:1 },
+    { name:'WORKSHOP', code:'18B15GE112', grade:'B+', credits:1.5 },
+    { name:'Basic Electronics', code:'24B11EC111', grade:'B+', credits:4 },
+    { name:'Software Development Fundamentals Lab-I', code:'24B15CS111', grade:'C+', credits:1 },
+    { name:'Basic Electronics Lab', code:'24B15EC111', grade:'A', credits:1 },
+  ]}
 };
 
 function gradeClass(g) {
-  const map = { 'O':'grade-O','A':'grade-A','A+':'grade-A','B+':'grade-Bp','B':'grade-B','C+':'grade-Cp','C':'grade-C','D':'grade-D','F':'grade-F' };
-  return map[g] || 'grade-B';
+  return { 'O':'grade-O','A':'grade-A','A+':'grade-Ap','B+':'grade-Bp','B':'grade-B','C+':'grade-Cp','C':'grade-C','D':'grade-D','F':'grade-F' }[g] || 'grade-B';
 }
 
 function renderSemester() {
   const key = document.getElementById('semesterSelect').value;
   const data = semesterData[key];
   document.getElementById('totalCredits').textContent = `Total Credits: ${data.credits}`;
-  const grid = document.getElementById('semGrid');
-  grid.innerHTML = data.subjects.map(s => `
+  document.getElementById('semGrid').innerHTML = data.subjects.map(s => `
     <div class="sem-subject-card">
-      <div class="sem-subject-left">
-        <div class="sem-subject-name">${s.name}</div>
-        <div class="sem-subject-code">${s.code}</div>
-      </div>
+      <div class="sem-subject-left"><div class="sem-subject-name">${s.name}</div><div class="sem-subject-code">${s.code}</div></div>
       <div class="sem-subject-right">
-        <div class="sem-grade-block">
-          <div class="sem-grade-val ${gradeClass(s.grade)}">${s.grade}</div>
-          <div class="sem-label">Grade</div>
-        </div>
-        <div class="sem-credit-block">
-          <div class="sem-credit-val">${s.credits}</div>
-          <div class="sem-label">Credits</div>
-        </div>
+        <div class="sem-grade-block"><div class="sem-grade-val ${gradeClass(s.grade)}">${s.grade}</div><div class="sem-label">Grade</div></div>
+        <div class="sem-credit-block"><div class="sem-credit-val">${s.credits}</div><div class="sem-label">Credits</div></div>
       </div>
     </div>`).join('');
 }
 
-// ── TAB SWITCHING ──
-function switchTab(name, el) {
-  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('view-' + name).classList.add('active');
-  el.classList.add('active');
-  if (name === 'overview' && !window.chartBuilt) buildChart();
-}
-
-// ── MARKS DATA ──
+// ══════════════════════════════════════════
+//  MARKS DATA
+// ══════════════════════════════════════════
 const subjects = [
-  { title: "ANALOGUE ELECTRONICS", code: "15B11EC411",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 11, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 12, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 16, max: 35 }] },
-  { title: "DIGITAL SIGNAL PROCESSING", code: "15B11EC413",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 10, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 12, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 18, max: 35 }] },
-  { title: "Analogue Electronics Lab", code: "15B11EC471", titleCase: true,
-    assessments: [{ name: "END VIVA-LAB 26 EVEN", score: 8, max: 20 }] },
-  { title: "TELECOMMUNICATION NETWORKS", code: "15B11EC611",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 12, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 13, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 17, max: 35 }] },
-  { title: "DIGITAL SIGNAL PROCESSING LAB", code: "15B17EC473",
-    assessments: [{ name: "END VIVA-LAB 26 EVEN", score: 7, max: 20 }] },
-  { title: "PRINCIPLES OF MANAGEMENT", code: "15B1NHS434",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 14, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 15, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 19, max: 35 }] },
-  { title: "ANALOG AND DIGITAL COMMUNICATION", code: "18B11EC212",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 10, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 12, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 16, max: 35 }] },
-  { title: "ANALOG AND DIGITAL COMMUNICATION LAB", code: "18B15EC212",
-    assessments: [{ name: "END VIVA-LAB 26 EVEN", score: 10, max: 20 }] },
-  { title: "INTRODUCTION TO DIGITAL IMAGE AND VIDEO PROCESSING", code: "20B12EC211",
-    assessments: [{ name: "T1-2026 EVEN SEM", score: 15, max: 20 },{ name: "T2-2026EVEN-20MARKS", score: 14, max: 20 },{ name: "ENDTR-26EVE-35MARKS", score: 17, max: 35 }] }
+  { title:"ANALOGUE ELECTRONICS", code:"15B11EC411", assessments:[{name:"T1-2026 EVEN SEM",score:11,max:20},{name:"T2-2026EVEN-20MARKS",score:12,max:20},{name:"ENDTR-26EVE-35MARKS",score:16,max:35}] },
+  { title:"DIGITAL SIGNAL PROCESSING", code:"15B11EC413", assessments:[{name:"T1-2026 EVEN SEM",score:10,max:20},{name:"T2-2026EVEN-20MARKS",score:12,max:20},{name:"ENDTR-26EVE-35MARKS",score:18,max:35}] },
+  { title:"Analogue Electronics Lab", code:"15B11EC471", titleCase:true, assessments:[{name:"END VIVA-LAB 26 EVEN",score:8,max:20}] },
+  { title:"TELECOMMUNICATION NETWORKS", code:"15B11EC611", assessments:[{name:"T1-2026 EVEN SEM",score:12,max:20},{name:"T2-2026EVEN-20MARKS",score:13,max:20},{name:"ENDTR-26EVE-35MARKS",score:17,max:35}] },
+  { title:"DIGITAL SIGNAL PROCESSING LAB", code:"15B17EC473", assessments:[{name:"END VIVA-LAB 26 EVEN",score:7,max:20}] },
+  { title:"PRINCIPLES OF MANAGEMENT", code:"15B1NHS434", assessments:[{name:"T1-2026 EVEN SEM",score:14,max:20},{name:"T2-2026EVEN-20MARKS",score:15,max:20},{name:"ENDTR-26EVE-35MARKS",score:19,max:35}] },
+  { title:"ANALOG AND DIGITAL COMMUNICATION", code:"18B11EC212", assessments:[{name:"T1-2026 EVEN SEM",score:10,max:20},{name:"T2-2026EVEN-20MARKS",score:12,max:20},{name:"ENDTR-26EVE-35MARKS",score:16,max:35}] },
+  { title:"ANALOG AND DIGITAL COMMUNICATION LAB", code:"18B15EC212", assessments:[{name:"END VIVA-LAB 26 EVEN",score:10,max:20}] },
+  { title:"INTRODUCTION TO DIGITAL IMAGE AND VIDEO PROCESSING", code:"20B12EC211", assessments:[{name:"T1-2026 EVEN SEM",score:15,max:20},{name:"T2-2026EVEN-20MARKS",score:14,max:20},{name:"ENDTR-26EVE-35MARKS",score:17,max:35}] }
 ];
 
 function totalScore(a) { return a.reduce((s,x)=>s+x.score,0); }
-function totalMax(a) { return a.reduce((s,x)=>s+x.max,0); }
+function totalMax(a)   { return a.reduce((s,x)=>s+x.max,0); }
 
 function renderCard(subj, idx) {
   const total = totalScore(subj.assessments), max = totalMax(subj.assessments);
-  const titleStyle = subj.titleCase ? '' : 'text-transform:uppercase';
   const rows = subj.assessments.map((a,ai)=>{
     const pct = Math.min(100,(a.score/a.max)*100);
     return `<div class="assess-row">
@@ -599,22 +1069,21 @@ function renderCard(subj, idx) {
         <span class="assess-name">${a.name}</span>
         <span class="assess-score">
           <span class="score-val" onclick="startEdit(this,${idx},${ai})" title="Click to edit">${a.score}</span>
-          <span class="score-max">${a.max}</span>
+          <span class="score-max">/ ${a.max}</span>
         </span>
       </div>
       <div class="progress-track"><div class="progress-fill" id="bar-${idx}-${ai}" style="width:${pct}%"></div></div>
     </div>`;
   }).join('');
+  const style = subj.titleCase ? '' : 'text-transform:uppercase';
   return `<div class="card">
-    <div class="card-header"><span class="card-title" style="${titleStyle}">${subj.title}</span><span class="card-code">${subj.code}</span></div>
+    <div class="card-header"><span class="card-title" style="${style}">${subj.title}</span><span class="card-code">${subj.code}</span></div>
     <div class="score-bar-wrap" id="total-${idx}">Score: ${total}/${max}</div>
     <div class="assessments"><div class="assess-header"><span>Assessment</span><span>Weightage</span></div>${rows}</div>
   </div>`;
 }
 
-function renderAll() {
-  document.getElementById('subjectGrid').innerHTML = subjects.map((s,i)=>renderCard(s,i)).join('');
-}
+function renderAll() { document.getElementById('subjectGrid').innerHTML = subjects.map((s,i)=>renderCard(s,i)).join(''); }
 
 function startEdit(el, si, ai) {
   if (el.querySelector('input')) return;
@@ -623,10 +1092,8 @@ function startEdit(el, si, ai) {
   const inp = el.querySelector('input');
   inp.focus(); inp.select();
   function commit() {
-    let v = parseFloat(inp.value);
-    if(isNaN(v)||v<0) v=0; if(v>max) v=max;
-    subjects[si].assessments[ai].score = v;
-    updateScore(si, ai, v);
+    let v = parseFloat(inp.value); if(isNaN(v)||v<0)v=0; if(v>max)v=max;
+    subjects[si].assessments[ai].score = v; updateScore(si,ai,v);
   }
   inp.addEventListener('blur', commit);
   inp.addEventListener('keydown', e => { if(e.key==='Enter'){commit();inp.blur();} if(e.key==='Escape'){el.textContent=cur;} });
@@ -637,9 +1104,8 @@ function updateScore(si, ai, val) {
   const bar = document.getElementById(`bar-${si}-${ai}`);
   if(bar) bar.style.width = Math.min(100,(val/max)*100)+'%';
   const cards = document.querySelectorAll('#subjectGrid .card');
-  const card = cards[si];
-  if(card){
-    const sv = card.querySelectorAll('.score-val');
+  if(cards[si]) {
+    const sv = cards[si].querySelectorAll('.score-val');
     if(sv[ai]){ sv[ai].textContent=val; sv[ai].onclick=()=>startEdit(sv[ai],si,ai); }
     const tel = document.getElementById(`total-${si}`);
     if(tel) tel.textContent=`Score: ${totalScore(subj.assessments)}/${totalMax(subj.assessments)}`;
@@ -658,7 +1124,9 @@ function downloadMarks() {
   a.download = 'marks_2026EVESEM.txt'; a.click();
 }
 
-// ── CHART ──
+// ══════════════════════════════════════════
+//  CHART
+// ══════════════════════════════════════════
 window.chartBuilt = false;
 function buildChart() {
   const ctx = document.getElementById('gradeChart').getContext('2d');
@@ -672,48 +1140,180 @@ function buildChart() {
       ]
     },
     options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { title:{display:true,text:'Semester',color:'#666',font:{size:11}}, ticks:{color:'#666'}, grid:{color:'#222'}, border:{color:'#333'} },
-        y: { min:6.3, max:7.1, ticks:{color:'#666',stepSize:0.1}, grid:{color:'#222',borderDash:[4,4]}, border:{color:'#333'} }
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{display:false} },
+      scales:{
+        x:{ title:{display:true,text:'Semester',color:'#666',font:{size:11}}, ticks:{color:'#666'}, grid:{color:'#222'}, border:{color:'#333'} },
+        y:{ min:6.3, max:7.1, ticks:{color:'#666',stepSize:0.1}, grid:{color:'#222',borderDash:[4,4]}, border:{color:'#333'} }
       }
     }
   });
   window.chartBuilt = true;
 }
 
-// ── LOGIN ──
-function togglePw() {
-  const inp = document.getElementById('pwInput');
-  inp.type = inp.type === 'password' ? 'text' : 'password';
+// ══════════════════════════════════════════
+//  ATTENDANCE DATA
+// ══════════════════════════════════════════
+const attData = [
+  { name:'Analogue Electronics',           stats:[{label:'Lecture',val:'82.1%'},{label:'Tutorial',val:'44.4%'}], attended:36, total:50, pct:75, hint:'Attend 6 more' },
+  { name:'Digital Signal Processing Lab',  stats:[{label:'Lecture',val:'82.4%'},{label:'Practical',val:'83.3%'}], attended:10, total:12, pct:83, hint:'Can miss 1' },
+  { name:'Telecommunication Networks',     stats:[{label:'Lecture',val:'69.2%'}], attended:27, total:39, pct:69, hint:'Attend 9 more' },
+  { name:'Analog And Digital Communication Lab', stats:[{label:'Practical',val:'80%'}], attended:8, total:10, pct:80, hint:'' },
+  { name:'Analogue Electronics Lab',       stats:[{label:'Practical',val:'92.3%'}], attended:12, total:13, pct:92, hint:'Can miss 3' },
+  { name:'Digital Signal Processing',      stats:[{label:'Lecture',val:'73.5%'},{label:'Tutorial',val:'83.3%'}], attended:35, total:46, pct:76, hint:'Attend 4 more' },
+  { name:'Principles Of Management',       stats:[{label:'Lecture',val:'72.2%'},{label:'Tutorial',val:'72.7%'}], attended:26, total:36, pct:77, hint:'Attend 4 more' },
+  { name:'Analog And Digital Communication', stats:[{label:'Lecture',val:'80.5%'},{label:'Tutorial',val:'60%'}], attended:38, total:47, pct:81, hint:'Can miss 3' },
+  { name:'Intro To Digital Image & Video Processing', stats:[{label:'Lecture',val:'85.7%'}], attended:30, total:36, pct:86, hint:'Can miss 4' },
+];
+
+function attColor(pct) { return pct >= 80 ? 'green' : pct >= 75 ? 'yellow' : 'red'; }
+
+function renderAttendance() {
+  const circumference = 2 * Math.PI * 20;
+  document.getElementById('attGrid').innerHTML = attData.map(d => {
+    const color = attColor(d.pct);
+    const offset = circumference * (1 - d.pct / 100);
+    const statsHtml = d.stats.map(s => `<div class="att-stat"><span class="att-stat-label">${s.label}</span><span class="att-stat-val">${s.val}</span></div>`).join('');
+    const hintColor = d.pct >= 80 ? 'green' : d.pct >= 75 ? 'yellow' : 'red';
+    return `<div class="att-card">
+      <div class="att-card-name">${d.name}</div>
+      <div class="att-stats-row">${statsHtml}</div>
+      <div class="att-bottom">
+        <div class="att-classes-info">
+          ${d.total} classes &nbsp;<b>${d.attended}</b>
+          ${d.hint ? `<div class="att-hint ${hintColor}">${d.hint}</div>` : ''}
+        </div>
+        <div class="att-circle">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle class="att-circle-track" cx="26" cy="26" r="20"/>
+            <circle class="att-circle-fill ${color}" cx="26" cy="26" r="20"
+              stroke-dasharray="${circumference}"
+              stroke-dashoffset="${offset}"/>
+          </svg>
+          <div class="att-circle-label ${color}">${d.pct}</div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
-function doLogin(demo) {
-  const enroll = document.getElementById('enrollInput').value.trim();
-  const pw = document.getElementById('pwInput').value.trim();
-  const err = document.getElementById('loginError');
-  if (!demo && (!enroll || !pw)) {
-    err.textContent = 'Please enter your enrollment number and password.';
-    return;
-  }
-  err.textContent = '';
-  const page = document.getElementById('login-page');
-  page.style.opacity = '0';
-  page.style.transition = 'opacity 0.4s ease';
-  setTimeout(() => { page.classList.add('hidden'); }, 400);
+// ══════════════════════════════════════════
+//  SUBJECTS
+// ══════════════════════════════════════════
+const registeredSubjects = [
+  { name:'ANALOGUE ELECTRONICS', code:'15B11EC411', faculty:'Ajay Kumar', tags:['LEC','TUT'], credits:4 },
+  { name:'ANALOG AND DIGITAL COMMUNICATION', code:'18B11EC212', faculty:'Reena Budhiraja', tags:['LEC'], credits:4 },
+  { name:'PRINCIPLES OF MANAGEMENT', code:'15B1NHS434', faculty:'Shikha Kumari', tags:['LEC','TUT'], credits:3 },
+  { name:'ANALOGUE ELECTRONICS LAB', code:'15B11EC471', faculty:'Attendra Mohan', tags:['PRAC'], credits:1 },
+  { name:'DIGITAL SIGNAL PROCESSING', code:'15B11EC413', faculty:'Jyotsna Chatterjee', tags:['LEC','TUT'], credits:4 },
+  { name:'TELECOMMUNICATION NETWORKS', code:'15B11EC611', faculty:'Ankur Bhardwaj', tags:['LEC'], credits:3 },
+  { name:'INTRODUCTION TO DIGITAL IMAGE AND VIDEO PROCESSING', code:'20B12EC211', faculty:'Manika Jha', tags:['LEC'], credits:3 },
+  { name:'DIGITAL SIGNAL PROCESSING LAB', code:'15B17EC473', faculty:'Abhijeet Upadhya', tags:['PRAC'], credits:1 },
+  { name:'ANALOG AND DIGITAL COMMUNICATION LAB', code:'18B15EC212', faculty:'Bhavana Gupta', tags:['PRAC'], credits:1 },
+];
+
+function tagClass(t) { return t==='LEC'?'tag-lec':t==='TUT'?'tag-tut':'tag-prac'; }
+
+function renderSubjects() {
+  document.getElementById('subjGrid').innerHTML = registeredSubjects.map(s => `
+    <div class="subj-card">
+      <div class="subj-faculty-tags">${s.tags.map(t=>`<span class="subj-tag ${tagClass(t)}">${t}</span>`).join('')}</div>
+      <div class="subj-card-name">${s.name}</div>
+      <div class="subj-card-code">${s.code}</div>
+      <div class="subj-faculty-name">${s.faculty}</div>
+      <div class="subj-card-bottom"><span></span><span class="subj-credits-pill">${s.credits} Credits</span></div>
+    </div>`).join('');
 }
 
-document.getElementById('pwInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
-});
-document.getElementById('enrollInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') document.getElementById('pwInput').focus();
-});
+const choicesData = [
+  { group:'Core', count:7, items:[
+    { name:'Analogue Electronics', code:'15B11EC411', credits:4, status:'active' },
+    { name:'Digital Signal Processing', code:'15B11EC413', credits:4, status:'active' },
+    { name:'Telecommunication Networks', code:'15B11EC611', credits:3, status:'active' },
+    { name:'Analogue Electronics Lab', code:'15B11EC471', credits:1, status:'active' },
+    { name:'Digital Signal Processing Lab', code:'15B17EC473', credits:1, status:'active' },
+  ]},
+  { group:'DE-1', count:4, items:[
+    { name:'Introduction To Digital Image And Video Processing', code:'20B12EC211', credits:3, status:'active' },
+    { name:'Microprocessors And Microcontrollers', code:'15B11EC271', credits:3, status:'none' },
+    { name:'Information Theory And Communication', code:'15B17EC278', credits:3, status:'none' },
+    { name:'Electronic Instrumentation And Management', code:'15B11EC211', credits:3, status:'none' },
+  ]},
+  { group:'ISS-1', count:11, items:[
+    { name:'Principles Of Management', code:'15B1NHS434', credits:3, status:'active' },
+    { name:'Sociology Of Work', code:'15B14HS144', credits:3, status:'none' },
+    { name:'Introduction To Sociology', code:'15B14HS332', credits:3, status:'none' },
+    { name:'Media Culture And Society', code:'15B14HS344', credits:3, status:'none' },
+    { name:'Introduction To Political Science', code:'15B14HS100', credits:3, status:'none' },
+  ]},
+];
 
-// Init
+function renderChoices() {
+  document.getElementById('choicesContainer').innerHTML = choicesData.map(g => `
+    <div class="choices-section">
+      <div class="choices-section-title">⚙ ${g.group} <span class="choices-count-badge">${g.count} Options</span></div>
+      <div class="choices-grid">
+        ${g.items.map((item,i) => {
+          const cls = item.status==='active' ? 'active-choice' : '';
+          const stClass = item.status==='active' ? 'status-active' : 'status-none';
+          const stLabel = item.status==='active' ? '● Active' : '○ Not Active';
+          return `<div class="choice-card ${cls}">
+            <span class="choice-num">${i+1}</span>
+            <div class="choice-status ${stClass}">${stLabel}</div>
+            <div class="choice-name">${item.name}</div>
+            <div class="choice-meta">${item.code} · ${item.credits} Credits</div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════
+//  GPA CALCULATOR
+// ══════════════════════════════════════════
+let gpaRowCount = 0;
+function addGpaRow() {
+  const id = gpaRowCount++;
+  const div = document.createElement('div');
+  div.className = 'gpa-row'; div.id = `gpaRow-${id}`;
+  div.innerHTML = `
+    <input class="gpa-input" placeholder="Subject name" type="text">
+    <input class="gpa-input" placeholder="Credits" type="number" min="1" max="6" step="0.5" oninput="calcGpa()">
+    <input class="gpa-input" placeholder="Grade Pts (0-10)" type="number" min="0" max="10" step="1" oninput="calcGpa()">
+    <button class="gpa-del-btn" onclick="document.getElementById('gpaRow-${id}').remove();calcGpa()">×</button>`;
+  document.getElementById('gpaRows').appendChild(div);
+}
+function calcGpa() {
+  let totalCP = 0, totalC = 0;
+  document.querySelectorAll('#gpaRows .gpa-row').forEach(r => {
+    const ins = r.querySelectorAll('input');
+    const c = parseFloat(ins[1].value)||0, gp = parseFloat(ins[2].value)||0;
+    totalCP += c * gp; totalC += c;
+  });
+  const el = document.getElementById('gpaDisplay');
+  if (totalC > 0) {
+    const val = (totalCP/totalC);
+    el.textContent = val.toFixed(2);
+    el.style.color = val >= 7 ? '#4ade80' : val >= 5.5 ? '#f0a500' : '#f87171';
+  } else { el.textContent = '—'; el.style.color = '#4ade80'; }
+}
+function clearGpa() {
+  document.getElementById('gpaRows').innerHTML = '';
+  document.getElementById('gpaDisplay').textContent = '—';
+  document.getElementById('gpaDisplay').style.color = '#4ade80';
+  gpaRowCount = 0;
+}
+// Seed with 3 rows
+(function(){ addGpaRow(); addGpaRow(); addGpaRow(); })();
+
+// ══════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════
 renderAll();
 renderSemester();
+renderAttendance();
+renderSubjects();
+renderChoices();
 </script>
 </body>
 </html>
